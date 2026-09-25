@@ -1,0 +1,2 @@
+# 2000-motivasi
+MASIH TAHAP PERCOBAAN
