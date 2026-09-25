@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Motivasi Harian</title>
+<style>
+:root{
+  --bg:#0f0d0a; --bg2:#171310; --card:#1c1712; --card2:#221c16;
+  --text:#f5efe4; --sub:#a99c86; --line:#3a3025;
+  --accent:#ff7a3d; --accent2:#ffb545; --radius:20px;
+  --shadow:0 20px 50px -20px rgba(0,0,0,.6);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#faf6ee; --bg2:#f1ebdd; --card:#fff; --card2:#fdfbf6;
+    --text:#241f18; --sub:#7a7060; --line:#e7ddc9;
+    --shadow:0 16px 40px -20px rgba(60,40,10,.25);
+  }
+}
+:root[data-theme="light"]{
+  --bg:#faf6ee; --bg2:#f1ebdd; --card:#fff; --card2:#fdfbf6;
+  --text:#241f18; --sub:#7a7060; --line:#e7ddc9;
+  --shadow:0 16px 40px -20px rgba(60,40,10,.25);
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:
+    radial-gradient(1200px 600px at 10% -10%, color-mix(in srgb, var(--accent) 12%, transparent), transparent),
+    var(--bg);
+  color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;min-height:100%}
+header{position:sticky;top:0;z-index:10;
+  padding:calc(14px + env(safe-area-inset-top,0px)) 20px 14px;
+  background:color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:1.05rem;letter-spacing:-.01em}
+.brand .flame{font-size:1.2rem;filter:drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 60%, transparent))}
+.badge{font-size:.68rem;font-weight:600;color:var(--sub);border:1px solid var(--line);padding:4px 10px;border-radius:99px;display:flex;align-items:center;gap:5px}
+.dot{width:6px;height:6px;border-radius:50%;background:#3ecf6b;box-shadow:0 0 6px #3ecf6b}
+main{max-width:700px;margin:0 auto;padding:26px 18px 70px}
+
+.hero{position:relative;background:linear-gradient(165deg,var(--card2),var(--card));
+  border-radius:var(--radius);padding:2px;box-shadow:var(--shadow);margin-bottom:34px;
+  border:1px solid var(--line);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-40% -40% auto auto;width:60%;height:60%;
+  background:radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent), transparent 70%);
+  pointer-events:none}
+.hero-inner{position:relative;padding:30px 26px}
+.eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:.09em;color:var(--accent);margin-bottom:14px}
+.eyebrow::before{content:"✦"}
+h2{font-family:Georgia,serif;margin:0 0 18px;font-size:1.65rem;line-height:1.28;letter-spacing:-.01em}
+.article{white-space:pre-wrap;font-size:1.02rem;color:var(--text);opacity:.94}
+.article p{margin:0 0 1em}
+
+.skeleton{display:flex;flex-direction:column;gap:10px}
+.sk-line{height:13px;border-radius:8px;background:linear-gradient(90deg,var(--line),color-mix(in srgb, var(--line) 40%, transparent),var(--line));
+  background-size:200% 100%;animation:shimmer 1.4s infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.sk-line.w60{width:60%}.sk-line.w90{width:90%}.sk-line.w75{width:75%}
+
+.error-box{color:var(--sub);font-size:.92rem}
+.retry-btn{margin-top:12px;background:var(--accent);color:#1a0e05;border:none;font-weight:700;
+  padding:9px 18px;border-radius:99px;font-size:.85rem;cursor:pointer}
+
+.section-title{display:flex;align-items:center;gap:12px;margin:0 0 18px;color:var(--sub);
+  font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+.section-title::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.forum-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px;margin-bottom:22px;box-shadow:var(--shadow)}
+textarea{width:100%;min-height:76px;border:1px solid var(--line);border-radius:14px;padding:13px 14px;
+  background:var(--bg2);color:var(--text);font-family:inherit;font-size:.94rem;resize:vertical;transition:border-color .15s}
+textarea:focus{outline:none;border-color:var(--accent)}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.counter{font-size:.72rem;color:var(--sub)}
+button{font-family:inherit;border:none;border-radius:99px;font-weight:700;cursor:pointer;transition:transform .1s, opacity .15s}
+button:active{transform:scale(.96)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#1a0e05;padding:10px 22px;font-size:.9rem}
+.btn-primary:disabled{opacity:.4;cursor:default}
+
+.post{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;
+  margin-bottom:10px;display:flex;gap:12px;box-shadow:0 4px 14px -10px rgba(0,0,0,.3)}
+.avatar{flex:none;width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.post-body{flex:1;min-width:0}
+.post .meta{font-size:.7rem;color:var(--sub);margin-bottom:4px}
+.post .text{font-size:.92rem;white-space:pre-wrap;word-break:break-word}
+.empty{color:var(--sub);font-size:.85rem;text-align:center;padding:26px 0}
+.list-loading{display:flex;flex-direction:column;gap:10px}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="flame">🔥</span> Motivasi Harian</div>
+  <span class="badge" id="statusBadge"><span class="dot" id="statusDot" style="background:var(--sub);box-shadow:none"></span><span id="statusText">memuat</span></span>
+</header>
+<main>
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow" id="dateLabel">Hari ini</div>
+      <h2 id="articleTitle">Menyiapkan motivasi hari ini…</h2>
+      <div id="articleBody">
+        <div class="skeleton">
+          <div class="sk-line w90"></div>
+          <div class="sk-line w75"></div>
+          <div class="sk-line w60"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Forum Komunitas</div>
+  <div class="forum-box">
+    <textarea id="postInput" maxlength="800" placeholder="Bagikan pikiran, cerita, atau motivasimu hari ini..."></textarea>
+    <div class="row">
+      <span class="counter"><span id="charCount">0</span>/800</span>
+      <button class="btn-primary" id="publishBtn">Publish</button>
+    </div>
+  </div>
+  <div id="forumList" class="list-loading">
+    <div class="post" style="opacity:.5"><div class="avatar"></div><div class="post-body"><div class="sk-line w60" style="margin-bottom:8px"></div><div class="sk-line w90"></div></div></div>
+  </div>
+</main>
+
+<script>
+function todayKey(){
+  const d = new Date();
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,'0')+"-"+String(d.getDate()).padStart(2,'0');
+}
+document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+function setStatus(text, color){
+  document.getElementById('statusText').textContent = text;
+  const dot = document.getElementById('statusDot');
+  dot.style.background = color;
+  dot.style.boxShadow = color === 'var(--sub)' ? 'none' : '0 0 6px '+color;
+}
+
+let dbNS = null, sampleNS = null;
+
+async function initCapabilities(){
+  try{ dbNS = await window.claude.use('db'); }catch(e){ dbNS = null; }
+  try{ sampleNS = await window.claude.use('sample'); }catch(e){ sampleNS = null; }
+  setStatus(dbNS ? 'tersinkron' : 'mode terbatas', dbNS ? '#3ecf6b' : '#e0592a');
+  loadOrGenerateArticle();
+  setupForum();
+}
+
+function renderArticle(title, body){
+  document.getElementById('articleTitle').textContent = title;
+  const paras = (body||'').split(/\n\s*\n/).filter(p => p.trim());
+  document.getElementById('articleBody').innerHTML =
+    '<div class="article">' + paras.map(p => '<p>'+escapeHtml(p)+'</p>').join('') + '</div>';
+}
+
+function renderArticleError(msg, canRetry){
+  document.getElementById('articleTitle').textContent = "Motivasi belum tersedia";
+  document.getElementById('articleBody').innerHTML =
+    '<div class="error-box">'+escapeHtml(msg)+
+    (canRetry ? '<br><button class="retry-btn" id="retryBtn">Coba lagi</button>' : '')+'</div>';
+  if(canRetry){
+    document.getElementById('retryBtn').onclick = () => {
+      document.getElementById('articleBody').innerHTML =
+        '<div class="skeleton"><div class="sk-line w90"></div><div class="sk-line w75"></div><div class="sk-line w60"></div></div>';
+      loadOrGenerateArticle(true);
+    };
+  }
+}
+
+async function loadOrGenerateArticle(forceRegenerate){
+  const key = todayKey();
+
+  if(!dbNS){
+    renderArticleError("Fitur tersinkron tidak tersedia di tampilan ini. Buka artifact ini melalui claude.ai agar konten harian dan forum bisa tersinkron untuk semua orang.", false);
+    return;
+  }
+
+  if(!forceRegenerate){
+    try{
+      const snap = await dbNS.doc('motivation/'+key).get();
+      if(snap.exists){
+        const data = snap.data();
+        if(data && data.body){ renderArticle(data.title || 'Motivasi Hari Ini', data.body); return; }
+      }
+    }catch(e){
+      renderArticleError("Gagal memuat data. Periksa koneksi lalu coba lagi.", true);
+      return;
+    }
+  }
+
+  if(!sampleNS){
+    renderArticleError("Pembuatan otomatis tidak tersedia untuk tampilan ini.", false);
+    return;
+  }
+
+  try{
+    const result = await sampleNS.json(
+      "Tulis artikel motivasi berbahasa Indonesia sekitar 2000 kata untuk tanggal "+key+". "+
+      "Buat judul singkat yang menggugah, lalu isi artikel yang hangat, personal, dan menginspirasi "+
+      "(boleh berisi cerita, analogi, dan ajakan bertindak di akhir). "+
+      "Balas HANYA dalam JSON dengan bentuk persis {\"title\": string, \"body\": string}. "+
+      "Di dalam body, pisahkan setiap paragraf dengan satu baris kosong, tanpa markdown heading.",
+      { modelTier: "complex" }
+    );
+    const title = (result && result.title) || "Motivasi Hari Ini";
+    const body = (result && result.body) || "";
+    if(!body){ renderArticleError("Jawaban kosong diterima. Coba lagi.", true); return; }
+    renderArticle(title, body);
+    try{ await dbNS.doc('motivation/'+key).set({title, body, ts: Date.now()}); }catch(e){}
+  }catch(e){
+    const msgs = {
+      not_granted: "Izin untuk membuat konten otomatis belum diberikan.",
+      rate_limited: "Terlalu banyak permintaan sedang berjalan. Coba lagi sebentar lagi.",
+      sampling_disabled: "Fitur AI tidak tersedia untuk akun ini."
+    };
+    renderArticleError(msgs[e && e.code] || "Gagal membuat motivasi hari ini. Coba lagi.", true);
+  }
+}
+
+function escapeHtml(s){
+  return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function initials(text){
+  const t = (text||'').trim();
+  return t ? t[0].toUpperCase() : '💬';
+}
+
+function renderPosts(posts){
+  const list = document.getElementById('forumList');
+  list.classList.remove('list-loading');
+  if(!posts.length){ list.innerHTML = '<div class="empty">Belum ada postingan. Jadilah yang pertama membagikan motivasi! ✨</div>'; return; }
+  list.innerHTML = posts.map(p => {
+    const d = p.ts ? new Date(p.ts).toLocaleString('id-ID',{dateStyle:'medium',timeStyle:'short'}) : '';
+    return '<div class="post"><div class="avatar">'+initials(p.text)+'</div>'+
+      '<div class="post-body"><div class="meta">'+d+'</div><div class="text">'+escapeHtml(p.text)+'</div></div></div>';
+  }).join('');
+}
+
+function setupForum(){
+  const btn = document.getElementById('publishBtn');
+  const input = document.getElementById('postInput');
+  const counter = document.getElementById('charCount');
+
+  input.addEventListener('input', () => { counter.textContent = input.value.length; });
+
+  if(!dbNS){
+    btn.disabled = true;
+    input.disabled = true;
+    document.getElementById('forumList').classList.remove('list-loading');
+    document.getElementById('forumList').innerHTML = '<div class="empty">Forum memerlukan tampilan tersinkron. Buka artifact ini melalui claude.ai.</div>';
+    return;
+  }
+
+  try{
+    dbNS.collection('forum_posts').orderBy('ts','desc').limit(100).onSnapshot(
+      snap => { renderPosts(snap.docs.map(d => d.data())); },
+      err => {
+        document.getElementById('forumList').classList.remove('list-loading');
+        document.getElementById('forumList').innerHTML = '<div class="empty">Tidak bisa memuat forum saat ini ('+(err && err.code || 'error')+').</div>';
+      }
+    );
+  }catch(e){
+    document.getElementById('forumList').classList.remove('list-loading');
+    document.getElementById('forumList').innerHTML = '<div class="empty">Tidak bisa memuat forum saat ini.</div>';
+  }
+
+  btn.addEventListener('click', async () => {
+    const text = input.value.trim();
+    if(!text) return;
+    btn.disabled = true;
+    const original = btn.textContent;
+    btn.textContent = 'Mengirim…';
+    try{
+      await dbNS.collection('forum_posts').add({ text, ts: Date.now() });
+      input.value = '';
+      counter.textContent = '0';
+    }catch(e){
+      const msg = (e && e.code === 'invalid_argument')
+        ? 'Kamu perlu menjadi Contributor ke atas untuk memposting.'
+        : 'Gagal publish. Coba lagi.';
+      alert(msg);
+    }
+    btn.disabled = false;
+    btn.textContent = original;
+  });
+}
+
+initCapabilities();
+</script>
+</body>
+</html>
